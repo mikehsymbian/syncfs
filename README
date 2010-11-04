@@ -1,0 +1,49 @@
+==========================================================================
+  FAQ (or, an imagined conversation with someone looking at this project
+==========================================================================
+
+1. What is this? What does it do?
+
+It's a synchronising filesystem, meant for automatically sending out changes
+to a bunch of servers when new files get written.
+
+2. What doesn't it do?
+
+Sync-on-read and locking.
+
+3. But that sucks.
+
+Yes, we know. We just wanted to send files out to listening servers as
+quickly as possible. Absolute consistency and file locking wasn't needed.
+
+4. The code sucks.
+
+There's a bit of copy-n-paste going on, yes. It was "oh dear, the site is
+down, we need a solution NOW because the current solution is making
+kittens die," implementation. It's better than it was, and can be better still.
+
+5. You depend on csync2 for full synchronisation if a node goes down
+and comes back up.
+
+Yes. Yes we do. See number 4.
+
+6. But... but... it works! And it's relatively fast... and... well,
+I kinda like it.
+
+Yeah, us too. Plus, it does the sending of files before the file handle is
+released, so that you can sleep soundly knowing your file is on all servers
+when you complete your write.
+
+7. What about... when a file read is requested and the file doesn't
+exist, it contacts other servers to find if a copy exists somewhere else.
+
+Yep, that would be good.
+
+8. And.. and... yeah! How about, after reading, a check on if an updated
+version of the file exists anywhere?
+
+Ummm, possibly.
+
+9. Cake is nice.
+
+Indeed. Most indeededly so.
